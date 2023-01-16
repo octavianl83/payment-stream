@@ -1,0 +1,19 @@
+{
+    "EntryPoints": {
+        "SanctionsTransform": {
+            "Transform" : "sanctions.jar",
+            "EndPoint" : "message11",
+            "Status": "SanctionsTransformed"
+        },
+        "RTPTransmitTransform": {
+            "Transform" : "rtptransmit.jar",
+            "EndPoint" : "message11",
+            "Status": "RTPTransmitTransformed"
+        },
+        "FundsControlTransform": {
+            "Transform" : "fundscontrol.jar",
+            "EndPoint" : "message11",
+            "Status": "FundsControlTransformed"
+        }
+    }
+}

@@ -1,0 +1,93 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  cloud:
+    stream:
+      bindings:
+        input-channel-1:
+          destination: message11
+      kafka:
+        streams:
+          binder:
+            deserialization-exception-handler: sendToDlq
+            applicationId: servicevalidation
+            brokers: localhost:9092
+            configuration:
+              processing.guarantee: exactly_once_v2
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  cloud:
+    stream:
+      bindings:
+        input-channel-1:
+          destination: message11
+      kafka:
+        streams:
+          binder:
+            deserialization-exception-handler: sendToDlq
+            applicationId: servicevalidation
+            brokers: localhost:9092
+            configuration:
+              processing.guarantee: exactly_once_v2
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+  cloud:
+    stream:
+      bindings:
+        input-channel-1:
+          destination: message11
+      kafka:
+        streams:
+          binder:
+            deserialization-exception-handler: sendToDlq
+            applicationId: servicevalidation
+            brokers: localhost:9092
+            configuration:
+              processing.guarantee: exactly_once_v2
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+---
+
+
+spring:
+  application:
+    name: service-validation
+  profiles:
+    active: "local"
+
+
+
+server:
+  port: 7300
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8671/eureka
+
+logging:
+  level:
+    root: INFO

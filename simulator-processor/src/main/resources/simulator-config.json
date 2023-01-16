@@ -1,0 +1,14 @@
+{
+    "EntryPoints": {
+        "SanctionsRequestInitiated": "sim-sanctions-receiver.grl",
+        "AccountLookupRequestInitiated": "sim-accountlookup-receiver.grl",
+        "FundsControlRequestInitiated": "sim-fundscontrol-receiver.grl",
+        "RTPAccountPostingRequestInitiated": "sim-rtp-accountposting-receiver.grl"
+    },
+    "ExitPoints": {
+        "SanctionsRequestInitiated": "message11",
+        "AccountLookupRequestInitiated" : "message11",
+        "FundsControlRequestInitiated" : "message11",
+        "RTPAccountPostingRequestInitiated" : "message11"
+    }
+}

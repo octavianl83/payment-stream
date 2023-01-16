@@ -1,0 +1,91 @@
+{
+    "EntryPoints": {
+        "message": ""
+    },
+    "ExitPoints": {
+        "SanctionsTransform" : "transform",
+        "SanctionsRequestInitiated": "simulator",
+        "AccountLookupRequestInitiated" : "simulator",
+        "FundsControlTransform" : "transform",
+        "FundsControlRequestInitiated" : "simulator",
+        "RTPAccountPostingRequestInitiated" : "simulator",
+        "RTPTransmitTransform" : "transform",
+        "RTPTransmitInitiated" : "simulator"
+    },
+    "CommitLogTopic" : "volpay.payment.commitlog",
+    "Tasks": {
+        "Initiated" : {
+            "RuleSet": "instruction-receiver.grl",
+            "CommitOnComplete": true
+        },
+        "InstructionReceived" : {
+            "RuleSet": "instruction-parse.grl",
+            "CommitOnComplete": true
+        },
+        "InstructionParsed" : {
+            "RuleSet": "instruction-validate.grl",
+            "CommitOnComplete": false
+        },
+        "InstructionValidated" : {
+            "RuleSet": "instruction-dupcheck.grl",
+            "CommitOnComplete": false
+        },
+        "InstructionDupChecked" : {
+            "RuleSet": "transaction-idgeneration.grl",
+            "CommitOnComplete": true
+        },
+        "TransactionIDGenerated" : {
+            "RuleSet": "transaction-messageidentifier.grl",
+            "CommitOnComplete": false
+        },
+        "Pacs.008Identified" : {
+            "RuleSet": "pacs008-parse.grl",
+            "CommitOnComplete": false
+        },
+        "Pacs.008Parsed" : {
+            "RuleSet": "pacs008-validate.grl",
+            "CommitOnComplete": false
+        },
+        "TransactionValidated" : {
+            "RuleSet": "transaction-dupcheck.grl",
+            "CommitOnComplete": false
+        },
+        "TransactionDupChecked" : {
+            "RuleSet": "sanctions-transformed.grl",
+            "CommitOnComplete": true
+        },
+        "SanctionsTransformed" : {
+            "RuleSet": "sanctions-request.grl",
+            "CommitOnComplete": true
+        },
+        "SanctionsReceived" : {
+            "RuleSet": "accountlookup-request.grl",
+            "CommitOnComplete": true
+        },
+        "AccountLookupReceived" : {
+            "RuleSet": "fundscontrol-transform.grl",
+            "CommitOnComplete": true
+        },
+        "FundsControlTransformed" : {
+            "RuleSet": "fundscontrol-request.grl",
+            "CommitOnComplete": false
+        },
+        "FundsControlReceived" : {
+            "RuleSet": "mop-derivation.grl",
+            "CommitOnComplete": false
+        },
+        "RtpMopIdentified" : {
+            "RuleSet": "rtp-accountposting-request.grl",
+            "CommitOnComplete": true
+        },
+        "RtpAccountPostingReceived" : {
+            "RuleSet": "rtp-transmit-transformed.grl",
+            "CommitOnComplete": true
+        },
+        "RTPTransmitTransformed" : {
+            "RuleSet": "rtp-transmit.grl",
+            "CommitOnComplete": true
+        }
+    },
+    "Templates" : ["pacs008.mst"]
+}

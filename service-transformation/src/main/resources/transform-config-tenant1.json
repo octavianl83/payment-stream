@@ -1,0 +1,19 @@
+{
+    "EntryPoints": {
+        "volpay.sanctions.transform": {
+            "Transform" : "sanctions.jar",
+            "EndPoint" : "volpay.sanctions.transformed",
+            "Status": "SanctionsTransformed"
+        },
+        "volpay.rtptransmit.transform": {
+            "Transform" : "rtptransmit.jar",
+            "EndPoint" : "volpay.rtptransmit.transformed",
+            "Status": "RTPTransmitTransformed"
+        },
+        "volpay.fundscontrol.transform": {
+            "Transform" : "fundscontrol.jar",
+            "EndPoint" : "volpay.fundscontrol.transformed",
+            "Status": "FundsControlTransformed"
+        }
+    }
+}
