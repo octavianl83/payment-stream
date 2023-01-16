@@ -37,6 +37,6 @@ public class SimulatorProcessorService {
 
         KStream<String, PaymentMessage> inputProcessed = input.mapValues(v -> streamProcess.getTransformedMessage(v));
 
-        inputProcessed.to("message11");
+        inputProcessed.to("messageprocessed");
     }
 }
